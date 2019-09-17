@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>
+			ToolTip
+		</title>
+		<style>
+			.tooltip {
+				color: blue;
+				background-color: #ddd;
+			}
+			.output {
+				display: none;
+				position: absolute;
+				border: 1px solid red;
+				background-color: black;
+				color: white;
+				padding: 5px;
+				top: 100px;
+				left: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>Hello world welcome to <span class="tooltip" data-toolContent="ABC">JavaScript</span>course</p>
+		<div>Just another tooltip with just random content like Hello world
+			all part of the <span class="tooltip" data-toolContent="XYZ">JavaScript</span>course</div>
+		<div class="output"></div>
+		<script src="./tooltip.js"></script>
+	</body>
+</html>

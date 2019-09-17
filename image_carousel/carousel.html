@@ -1,0 +1,121 @@
+<html>
+ 
+<head>
+    <title>Carousal</title>
+    <style>        
+        .slideContainer {
+            width: 79%;
+            height: 60%;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .slideContainer img {
+            width: 25%;
+            height: 100%;
+		    transition: transform 1s linear;
+        }
+    </style>
+</head>
+ 
+<body>
+    <div class="slideContainer"></div>
+    <button class="prev">Prev</button>
+    <button class="next">Next</button>
+    <script>
+        let slideIndex = 0;
+        const myImages = [
+            {
+                "img": "https://via.placeholder.com/250/09f?text=image1"
+                , "caption": "Hello World Image 1"
+            },
+            {
+                "img": "https://via.placeholder.com/250/e4e?text=image2"
+                , "caption": "Hello World Image 2"
+            },
+            {
+                "img": "https://via.placeholder.com/250/1f1?text=image3"
+                , "caption": "Hello World Image 3"
+            },
+            {
+                "img": "https://via.placeholder.com/250/09f?text=image4"
+                , "caption": "Hello World Image 1"
+            },
+            {
+                "img": "https://via.placeholder.com/250/e4e?text=image5"
+                , "caption": "Hello World Image 2"
+            },
+            {
+                "img": "https://via.placeholder.com/250/1f1?text=image6"
+                , "caption": "Hello World Image 3"
+            },
+            {
+                "img": "https://via.placeholder.com/250/09f?text=image7"
+                , "caption": "Hello World Image 1"
+            },
+            {
+                "img": "https://via.placeholder.com/250/e4e?text=image8"
+                , "caption": "Hello World Image 2"
+            },
+            {
+                "img": "https://via.placeholder.com/250/1f1?text=image9"
+                , "caption": "Hello World Image 3"
+            }
+     ];
+        builder();
+ 
+        function builder() {
+            for (let x = 0; x < myImages.length; x++) {
+                let img = document.createElement("img");
+                img.setAttribute("src", myImages[x].img);
+                document.querySelector(".slideContainer").appendChild(img);
+            }
+
+            document.querySelector(".prev").addEventListener("click", function() {
+                    moveSlide("prev");
+            });
+            document.querySelector(".next").addEventListener("click", function() {
+                moveSlide("next");
+            });
+        }
+
+	  function playSlides(b) {
+            const slides = document.querySelectorAll("img");
+            if (b === "next") {
+                for (var i = 0; i < slides.length; i++) {
+                    var transformStyleNext =  slides[i].style.transform;
+                    slides[i].style.transform = `translateX(${-249.6 + (+(transformStyleNext.replace(/[^-\d.]/g, '')))}px)`;
+                }	
+            } else if (b === "prev") {
+                for (var i = 0; i < slides.length; i++) {
+                    var transformStylePrev =  slides[i].style.transform;
+                    slides[i].style.transform = `translateX(${249.6 + (+(transformStylePrev.replace(/[^-\d.]/g, '')))}px)`;
+                }
+            }         
+        } 
+ 
+        function moveSlide(b) {
+            const slides = document.querySelectorAll("img");
+            if (b === "prev") {
+                if (slideIndex === 0) {
+                    return;
+                } else {
+                    slideIndex -= 1;                 
+                }
+            } else if (b === "next") {                
+                if (slideIndex > slides.length - 6) {
+                    return;
+                } else {
+                    slideIndex += 1;
+                }
+            }
+
+		    playSlides(b);
+        }
+    </script>
+</body>
+ 
+</html>
